@@ -62,8 +62,14 @@ class TimeTest {
 //        assertTrue(time04.equals(time05));
 //        assertTrue(time01.isPM());
 //        assertFalse(time05.isPM());
-
-
-
     }
+    @Test
+    public void testShift(){
+        Time time02 = Time.fromString("12:22 AM");
+        time02.shift(1444);
+        assertEquals(time02.toString(),"12:26 PM");
+        Throwable exception01 = assertThrows(IllegalArgumentException.class, () -> time02.shift(-5));
+        assertEquals("The minutes can't be negative", exception01.getMessage());
+    }
+
 }

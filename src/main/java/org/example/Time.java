@@ -145,6 +145,34 @@ public class Time implements Cloneable, Comparable<Time> {
                return 1;
         }
     }
+
+    public void shift(int minutes){
+        if(minutes < 0){
+            throw new IllegalArgumentException("The minutes can't be negative");
+        }
+        this.minute += minutes;
+        if(this.minute >= 60){
+            int reminder = this.minute % 60;
+            int hours = this.minute / 60;
+            this.minute = reminder;
+            this.hour += hours;
+        }
+        if(this.hour >= 12){
+            int reminder = this.hour % 12;
+            int flipMP = this.hour / 12;
+            if(((this.hour + reminder) % 12)== 0){
+                this.hour = 12;
+            }
+            for(int i = 0; i < flipMP; i++){
+                 if(PM == true){
+                     PM = false;
+                 }else{
+                     PM = true;
+                }
+            }
+
+        }
+    }
 }
 
 
