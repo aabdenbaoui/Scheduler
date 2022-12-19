@@ -3,13 +3,11 @@ package org.example;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Time {
+public class Time implements Cloneable, Comparable<Time> {
     private  int hour;
     private int minute;
     private boolean PM;
 
-    public Time() {
-    }
 
     public Time(int hour, int minute, boolean PM){
         this.hour = hour;
@@ -28,6 +26,7 @@ public class Time {
     public boolean isPM() {
         return PM;
     }
+
 
     public static Time fromString(String input) {
         int hour = 0;
@@ -72,13 +71,21 @@ public class Time {
         } else {
             throw new IllegalArgumentException("wrong input  for PM/AM");
         }
-        System.out.println(hour);
         if(pM == false && hour == 12){
             throw new IllegalArgumentException("Time can't be 12 and AM. It the time is AM choose 00");
         }
      return new Time(hour, min, pM);
     }
-    public static  boolean isInteger(String str){
+    public Time clone(){
+        try{
+            Time copy = (Time) super.clone();
+            return copy;
+        }catch (CloneNotSupportedException e){
+             return null;
+        }
+
+    }
+    private static  boolean isInteger(String str){
         Pattern pattern = Pattern.compile("[0-9]+");
         Matcher matcher = pattern.matcher(str);
         boolean matchFound = matcher.find();
@@ -111,6 +118,10 @@ public class Time {
         return formatHourString() + ":" + formatMinuteString() + " " + isPmToString();
     }
 
+    @Override
+    public int compareTo(Time o) {
+        return 0;
+    }
 }
 
 

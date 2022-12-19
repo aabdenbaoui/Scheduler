@@ -24,11 +24,13 @@ class TimeTest {
         Time time03 = Time.fromString("00:03 AM");
         Time time04 = Time.fromString("0:56 AM");
         Time time05 = Time.fromString("05:56 AM");
-        System.out.println(time01);
-        System.out.println(time02);
-        System.out.println(time03);
-        System.out.println(time04);
-        System.out.println(time05);
+//        System.out.println(time01);
+//        System.out.println(time02);
+//        System.out.println(time03);
+//        System.out.println(time04);
+//        System.out.println(time05);
+        Time time06 = time01.clone();
+        Assertions.assertEquals(time01.toString(), time06.toString());
 
 
 //        assertEquals(time01.toString(), time02.toString());
