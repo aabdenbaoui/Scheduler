@@ -49,7 +49,7 @@ public class Time implements Cloneable, Comparable<Time> {
         String hourStr = input.substring(0, indexOfColon);
 
         if (isInteger(hourStr)) {
-            if (Integer.parseInt(hourStr) >= 0 && Integer.parseInt(hourStr) <= 12) {
+            if (Integer.parseInt(hourStr) >= 1 && Integer.parseInt(hourStr) <= 12) {
                 hour = Integer.parseInt(hourStr);
             }
         } else {
@@ -71,9 +71,7 @@ public class Time implements Cloneable, Comparable<Time> {
         } else {
             throw new IllegalArgumentException("wrong input  for PM/AM");
         }
-        if(pM == false && hour == 12){
-            throw new IllegalArgumentException("Time can't be 12 and AM. It the time is AM choose 00");
-        }
+
      return new Time(hour, min, pM);
     }
     public Time clone(){
@@ -119,8 +117,33 @@ public class Time implements Cloneable, Comparable<Time> {
     }
 
     @Override
-    public int compareTo(Time o) {
-        return 0;
+    public int compareTo(Time time) {
+        if((time.PM == true && this.PM == true) || (time.PM == false && this.PM == false)){
+            if(time.hour == this.hour) {
+                if (time.minute == this.minute) {
+                    return 0;
+                } else if (time.minute < this.minute) {
+                    return 1;
+                    //time.minute > this.minute
+                } else {
+                    return -1;
+                }
+            }else if (time.hour == 12 && this.hour != 12){
+                return 1;
+            } else if(time.hour != 12 && this.hour == 12){
+                return -1;
+            }else if(time.hour < this.hour){
+                  return 1;
+            //  time.hour > this.hour
+            }else{
+                return -1;
+            }
+        }else if (time.PM == true && this.PM == false){
+               return -1;
+        //time.pm == false && this.pm == true
+        }else{
+               return 1;
+        }
     }
 }
 

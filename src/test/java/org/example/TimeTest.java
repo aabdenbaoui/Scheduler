@@ -19,18 +19,38 @@ class TimeTest {
     }
     @Test
     public void testEquals(){
-        Time time01 = Time.fromString("12:03 PM");
-        Time time02 = Time.fromString("12:03 PM");
-        Time time03 = Time.fromString("00:03 AM");
-        Time time04 = Time.fromString("0:56 AM");
-        Time time05 = Time.fromString("05:56 AM");
+        Time time00 = Time.fromString("11:59 PM");
+        Time time01 = Time.fromString("12:03 AM");
+        Time time02 = Time.fromString("8:17 AM");
+        Time time03 = Time.fromString("11:59 AM");
+        Time time04 = Time.fromString("12:00 PM");
+        Time time05 = Time.fromString("8:17 PM");
+        Time time06 = Time.fromString("11:59 PM");
+
+
 //        System.out.println(time01);
 //        System.out.println(time02);
 //        System.out.println(time03);
 //        System.out.println(time04);
 //        System.out.println(time05);
-        Time time06 = time01.clone();
-        Assertions.assertEquals(time01.toString(), time06.toString());
+//        Time time06 = time01.clone();
+//        Assertions.assertEquals(time01.toString(), time06.toString());
+        Assertions.assertEquals(time01.compareTo(time02),  -1);
+        //should be -1 because time01 is before time03
+        Assertions.assertEquals(time02.compareTo(time03), -1);
+        Assertions.assertEquals(time03.compareTo(time04), -1);
+        Assertions.assertEquals(time04.compareTo(time05), -1);
+        Assertions.assertEquals(time05.compareTo(time06), -1);
+        Assertions.assertEquals(time06.compareTo(time01), 1);
+        Assertions.assertEquals(time05.compareTo(time02), 1);
+        Assertions.assertEquals(time05.compareTo(time01), 1);
+        Assertions.assertEquals(time00.compareTo(time06), 0);
+
+
+
+//        Assertions.assertEquals(time02.compareTo(time03), -1);
+
+
 
 
 //        assertEquals(time01.toString(), time02.toString());
