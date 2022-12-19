@@ -104,7 +104,7 @@ public class Time {
        return Integer.toString(this.minute).length() == 1 ? "0" + this.minute : Integer.toString(this.minute);
     }
     private String formatHourString(){
-        return Integer.toString(this.minute).length() == 1 ? "0" + this.hour : Integer.toString(this.hour);
+        return Integer.toString(this.hour).length() == 1 ? "0" + this.hour : Integer.toString(this.hour);
     }
     @Override
     public String toString(){
